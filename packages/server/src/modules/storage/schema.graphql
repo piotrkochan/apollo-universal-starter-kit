@@ -1,0 +1,82 @@
+type StorageColor {
+  id: Int!
+  color: String!
+}
+
+type StorageLocation {
+  id: Int!
+  name: String!
+}
+
+type Storage {
+  id: Int!
+  name: String!
+  color: StorageColor
+  location: StorageLocation
+}
+
+type StorageEdges {
+  node: Storage
+  cursor: Int
+}
+
+type StoragePageInfo {
+  endCursor: Int
+  hasNextPage: Boolean
+}
+
+type Storages {
+  totalCount: Int
+  edges: [StorageEdges]
+  pageInfo: StoragePageInfo
+}
+
+extend type Query {
+  storages(limit: Int, after: Int): Storages
+  storage(id: Int!): Storage
+}
+
+extend type Mutation {
+  addStorage(input: AddStorageInput!): Storage
+  deleteStorage(id: Int!): Storage
+  editStorage(input: EditStorageInput!): Storage
+
+  addStorageLocation(input: AddStorageLocationInput!): StorageLocation
+  deleteStorageLocation(id: Int!): StorageLocation
+  editStorageLocation(input: EditStorageLocationInput!): StorageLocation
+}
+
+# Storage input
+input AddStorageInput {
+  name: String!
+  colorId: Int
+  locationId: Int
+}
+
+input EditStorageInput {
+  id: Int!
+  name: String!
+  colorId: Int
+  locationId: Int
+}
+
+# StorageLocation input
+input AddStorageLocationInput {
+  name: String!
+}
+
+input EditStorageLocationInput {
+  id: Int!
+  name: String!
+}
+
+extend type Subscription {
+  storageUpdated(id: Int!): UpdateStoragePayload
+  storagesUpdated(endCursor: Int!): UpdateStoragePayload
+}
+
+type UpdateStoragePayload {
+  mutation: String!
+  id: Int!
+  node: Storage
+}

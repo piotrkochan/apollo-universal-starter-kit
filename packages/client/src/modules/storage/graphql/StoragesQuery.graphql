@@ -1,0 +1,17 @@
+#import "./Storage.graphql"
+
+query storages($limit: Int!, $after: Int) {
+  posts(limit: $limit, after: $after) {
+    totalCount
+    edges {
+      cursor
+      node {
+        ...StorageInfo
+      }
+    }
+    pageInfo {
+      endCursor
+      hasNextPage
+    }
+  }
+}

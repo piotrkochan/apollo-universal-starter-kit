@@ -1,0 +1,4 @@
+fragment StorageInfo on Storage {
+  id
+  name
+}

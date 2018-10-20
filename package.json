@@ -27,7 +27,8 @@
     "heroku-postbuild": "lerna run heroku-postbuild --stream",
     "cli": "node tools/cli",
     "precommit": "lint-staged",
-    "postinstall": "opencollective postinstall"
+    "postinstall": "opencollective postinstall",
+    "knex": "./node_modules/knex/bin/cli.js --knexfile=./packages/server/knexfile.js"
   },
   "lint-staged": {
     "*.{js,jsx,json}": [

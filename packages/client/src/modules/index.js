@@ -8,6 +8,7 @@ import subscription from './subscription';
 import contact from './contact';
 import pageNotFound from './pageNotFound';
 import pagination from './pagination';
+import storage from './storage';
 import './favicon';
 
 import Feature from './connector';
@@ -21,6 +22,7 @@ export default new Feature(
   subscription,
   contact,
   pagination,
+  storage,
   pageNotFound,
   i18n
 );

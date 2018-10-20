@@ -63,7 +63,8 @@ export default (pubsub: PubSub) => ({
     }
   },
   Post: {
-    comments: createBatchResolver((sources, args, context) => {
+    comments: createBatchResolver(async (sources, args, context) => {
+      console.log(await context.Post.getCommentsForPostIds(sources.map(({ id }) => id)));
       return context.Post.getCommentsForPostIds(sources.map(({ id }) => id));
     })
   },
