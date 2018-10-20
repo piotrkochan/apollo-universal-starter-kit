@@ -14,7 +14,7 @@ export async function seed(knex, Promise) {
       name: `Location ${i + 1}`,
     });
   }
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 30; i++) {
     let storage = {name: `Storage: #${i}`};
     if (i < 5) {
       storage.colorId = i;

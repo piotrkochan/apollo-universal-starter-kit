@@ -11,31 +11,36 @@ const limit =
   PLATFORM === 'web' || PLATFORM === 'server' ? paginationConfig.web.itemsNumber : paginationConfig.mobile.itemsNumber;
 
 
-const PaginationDemoView = ({ items, test, handlePageChange, pagination, t }) => {
-  console.info('sdfsdfsdfsdfsdf');
-  
+const PaginationDemoView = ({ storages, test, handlePageChange, pagination, t }) => {
   const renderFunc = text => <span>{text}</span>;
   const columns = [
     {
       title: t('list.column.title'),
-      dataIndex: 'title',
+      dataIndex: 'name',
       key: 'title',
       displayName: 'MyComponent',
       render: renderFunc
     }
   ];
 
+  console.log(storages);
+  test();
+
+  if (!storages) {
+    return (<div>loading...</div>)
+  }
+
   return (
     <div>
-      <Table dataSource={items.edges.map(({ node }) => node)} columns={columns} />
+      <Table dataSource={storages.edges.map(({ node }) => node)} columns={columns} />
       <Pagination
-        itemsPerPage={items.edges.length}
+        itemsPerPage={storages.edges.length}
         handlePageChange={handlePageChange}
-        hasNextPage={items.pageInfo.hasNextPage}
+        hasNextPage={storages.pageInfo.hasNextPage}
         pagination={pagination}
-        total={items.totalCount}
+        total={storages.totalCount}
         loadMoreText={t('list.btn.more')}
-        defaultPageSize={items.limit}
+        defaultPageSize={limit}
       />
     </div>
   );
@@ -46,6 +51,7 @@ PaginationDemoView.propTypes = {
   handlePageChange: PropTypes.func,
   t: PropTypes.func,
   test: PropTypes.func,
+  storages: PropTypes.object,
   pagination: PropTypes.string
 };
 
@@ -53,15 +59,16 @@ export default compose(
   graphql(STORAGES_QUERY, {
     options: () => {
       return {
-        variables: {limit: limit, after: 0}
-      }
+        variables: { limit: limit, after: 0 },
+      };
     },
     props: ({ data }) => {
-      console.log(data);
-      console.log('AAAAAA');
-      console.log('AAAAAA');
+      const { storages } = data;
+      
+      // console.log(data);
 
       return {
+        storages,
         test: function() {
           console.log('sdfsdf');
         }

@@ -1,7 +1,7 @@
 #import "./Storage.graphql"
 
 query storages($limit: Int!, $after: Int) {
-  posts(limit: $limit, after: $after) {
+  storages(limit: $limit, after: $after) {
     totalCount
     edges {
       cursor
