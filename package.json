@@ -99,6 +99,7 @@
     "eslint-plugin-mocha": "^5.0.0",
     "eslint-plugin-prettier": "^2.4.0",
     "eslint-plugin-react": "^7.5.1",
+    "faker": "^4.1.0",
     "file-loader": "^1.1.6",
     "fork-ts-checker-webpack-plugin": "^0.4.9",
     "heroku-babel-loader": "^7.1.2",
@@ -154,9 +155,17 @@
   "jest": {
     "verbose": true,
     "preset": "jest-expo",
-    "testPathIgnorePatterns": ["node_modules", ".history"],
+    "testPathIgnorePatterns": [
+      "node_modules",
+      ".history"
+    ],
     "testRegex": "packages/mobile/src.*/__tests__/.*\\.(js|jsx|ts|tsx)$",
-    "moduleFileExtensions": ["ts", "tsx", "js", "jsx"],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx"
+    ],
     "transform": {
       "^.+\\.jsx?$": "babel-jest",
       "^.+\\.tsx?$": "ts-jest"

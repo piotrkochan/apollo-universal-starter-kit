@@ -3,3 +3,8 @@ scalar Date
 scalar Time
 
 scalar DateTime
+
+type PageInfo {
+  endCursor: Int
+  hasNextPage: Boolean
+}

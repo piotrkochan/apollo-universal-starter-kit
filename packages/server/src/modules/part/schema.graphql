@@ -1,0 +1,38 @@
+type Part {
+    id: Int!
+    sku: String!
+    suppliers: PartSupplier[]
+    manufacturer: Manufacturer
+    category: PartCategory
+    description: String
+    media: PartMedia[]
+}
+
+type PartMedia {
+
+}
+
+type PartCategory {
+    id: Int!
+    name: String!
+    parent: PartCategory
+}
+
+type Manufacturer {
+    id: Int!
+    name: String
+    website: String
+    logo: String
+}
+
+type Supplier {
+    id: Int!
+    name: String!
+    website: String
+}
+
+type PartSupplier {
+    sku: String!
+    description: String
+    supplier: Supplier
+}

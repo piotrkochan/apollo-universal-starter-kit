@@ -20,15 +20,10 @@ type StorageEdges {
   cursor: Int
 }
 
-type StoragePageInfo {
-  endCursor: Int
-  hasNextPage: Boolean
-}
-
 type Storages {
-  totalCount: Int
+  totalCount: Int!
   edges: [StorageEdges]
-  pageInfo: StoragePageInfo
+  pageInfo: PageInfo
 }
 
 extend type Query {

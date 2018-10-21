@@ -1,0 +1,8 @@
+type SearchCriteria {
+    category: Int
+    phrase: Int
+    offset: {
+        limit: Int
+        after: Int
+    }
+}

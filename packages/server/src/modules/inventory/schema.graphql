@@ -1,0 +1,35 @@
+type UserPart {
+    id: Int!
+    amount: Int!
+    category: UserCategory
+    basePart: Part
+    customPart: CustomPart
+}
+
+type CustomPart {
+    description: String
+    media: PartMedia[]
+    manufacturer: Manufacturer
+}
+
+type UserCategory {
+    id: Int
+    name: String
+    children: [UserCategory]
+}
+
+type UserPartsEdges {
+    node: UserPart
+    cursor: Int
+}
+
+type UserParts {
+  totalCount: Int!
+  edges: [UserPartsEdges]
+  pageInfo: PageInfo
+}
+
+extend type Query {
+  userParts(criteria: SearchCriteria): UserParts
+  userCategories(): UserCategory
+}
